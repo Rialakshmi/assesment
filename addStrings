@@ -2,6 +2,8 @@ public class Solution {
     public static void main(String args[]) {
         Solution solution = new Solution();
         System.out.println(solution.add("1,2,3", ','));
+        System.out.println(solution.add("1,2\n3",','));
+        
     }
 
     public int add(String str, char delimiter) {
@@ -11,7 +13,13 @@ public class Solution {
         int result = 0;
         String[] numString = str.split(String.valueOf(delimiter));
         for (String number : numString) {
+            try {
             result += Integer.parseInt(number);
+            }catch(NumberFormatException e) {
+                if(number.contains("\n")) {
+                    result+=add(number,'\n');
+                }
+            }
         }
         return result;
     }
