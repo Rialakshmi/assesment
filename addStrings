@@ -1,17 +1,41 @@
 public class Solution {
     public static void main(String args[]) {
         Solution solution = new Solution();
-        System.out.println(solution.add("1,2,3", ','));
-        System.out.println(solution.add("1,2\n3",','));
         
+        try{
+        System.out.println(solution.add("1,2,3", ','));
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try{
+        System.out.println(solution.add("1,2\n3",','));   
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try{
+        System.out.println(solution.add("1,\n",','));
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+         try{
+        System.out.println(solution.add("//;\n1;2",';'));
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public int add(String str, char delimiter) {
+    public int add(String str, char delimiter) throws Exception {
         if (str == null || str.length() == 0) {
             return 0;
         }
+        if(str.equals("\n"))
+        throw new Exception("Invalid");
+        if(str.length()>=4&&str.charAt(0)=='/'&&str.charAt(1)=='/'&&str.charAt(3)=='\n')
+        return add(str.substring(4),str.charAt(2));
         int result = 0;
         String[] numString = str.split(String.valueOf(delimiter));
+        
         for (String number : numString) {
             try {
             result += Integer.parseInt(number);
