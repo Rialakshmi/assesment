@@ -1,0 +1,18 @@
+public class Solution {
+    public static void main(String args[]) {
+        Solution solution = new Solution();
+        System.out.println(solution.add("1,2,3", ','));
+    }
+
+    public int add(String str, char delimiter) {
+        if (str == null || str.length() == 0) {
+            return 0;
+        }
+        int result = 0;
+        String[] numString = str.split(String.valueOf(delimiter));
+        for (String number : numString) {
+            result += Integer.parseInt(number);
+        }
+        return result;
+    }
+}
