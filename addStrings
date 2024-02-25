@@ -31,6 +31,12 @@ public class Solution {
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
+        
+        try{
+        System.out.println(solution.add("2,1001",','));
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public int add(String str, char delimiter) throws Exception {
@@ -49,7 +55,7 @@ public class Solution {
             int currNum = Integer.parseInt(number);
             if(currNum<0) {
                 negativeList.add(String.valueOf(currNum));
-            }
+            } else if(currNum<=1000)
             result += currNum;
             }catch(NumberFormatException e) {
                 if(number.contains("\n")) {
